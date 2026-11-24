@@ -22,7 +22,8 @@ kit = ServoKit(channels=SERVO_CHANNELS)
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(POWER_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
+# GPIO17 is reserved by Raspberry Pi OS for shutdown.
+# GPIO.setup(POWER_BUTTON_PIN, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def set_servo_angle(angle: int, servo_channel: int):
     kit.servo[servo_channel].angle = angle if servo_channel == 1 else 180 - angle

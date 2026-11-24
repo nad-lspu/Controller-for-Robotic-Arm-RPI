@@ -1,0 +1,68 @@
+.activity-item-container {
+    padding: 1.3rem 2rem;
+    border: 1px solid var(--bg-outline);
+    border-radius: 12px;
+    background-color: var(--bg-body);
+    position: relative;
+    transition-property: background-color;
+    transition-duration: 300ms;
+}
+
+.activity-item-container.hoverable:hover {
+    background-color: var(--bg-from);
+    cursor: pointer;
+}
+
+.activity-item-container > p {
+    width: 100%;
+    font-size: 0.9rem;
+    text-align: justify;
+}
+
+.activity-item-title-icon {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.activity-item-title-icon div {
+    border-radius: 50%;
+    background-color: var(--primary-button);
+    width: 2rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: grid;
+    place-content: center;
+}
+
+.activity-item-title-icon h2 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--text-heading);
+}
+
+.locked-activity-content {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    background-color: var(--bg-body-dim);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-input-hint);
+    font-size: 4rem;
+    gap: 0.75rem;
+}
+
+.locked-activity-content p {
+    font-size: 0.75rem;
+    color: var(--text-general);
+}

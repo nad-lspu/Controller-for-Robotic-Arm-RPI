@@ -1,0 +1,30 @@
+.activity-main-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.activity-content {
+    padding: 1rem 2.4rem;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    gap: 1rem;
+}
+
+.activity-content.scrollable {
+  overflow-y: scroll;
+}
+
+.activity-content.scrollable::-webkit-scrollbar {
+  width: 22px;
+}
+
+.activity-content.scrollable::-webkit-scrollbar-thumb {
+  background-color: var(--text-input-hint);
+  border-radius: 12px;
+  border: 3px solid var(--bg-to);
+  margin-right: 4px;
+  border: 5px solid var(--bg-to);
+}

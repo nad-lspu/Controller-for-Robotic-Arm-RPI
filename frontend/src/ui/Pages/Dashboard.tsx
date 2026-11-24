@@ -1,3 +1,4 @@
+import { CameraProvider } from '../Context/CameraContext';
 import Icons from '../Utilities/Icons';
 import { NavDrawerMenu } from '../Components/NavDrawer';
 import { useState, useContext, useRef, useReducer, type JSX } from 'react';
@@ -47,65 +48,85 @@ const Dashboard = () => {
   });
 
   return (
-    <main className='dashboard-container'>
-      <section className='nav-drawer'>
-        <div>
-          <header>
-            <Icons.AppLogo className="app-logo" />
-            <h1>Trixie</h1>
-          </header>
-          <section className='search-box-container'>
-            <Icons.Search className='search-icon' />
-            <input type="text" placeholder='Search' />
-          </section>
-          <NavDrawerMenu 
-            items={[
-              { icon: Icons.Dashboard, title: 'Dashboard', element: DashboardTab },
-              { icon: Icons.Controller, title: 'Controller', element: Controller },
-              { icon: Icons.Activities, title: 'Activities', element: Activities },
-              { icon: Icons.CameraOutline, title: 'Vision', element: Vision },
-              { icon: Icons.Settings, title: 'Settings', element: Settings }
-            ]}
-            onClick={selectedElement => setActiveTab(selectedElement)}
-          />
-        </div>
-        <section className='user-info-container'>
-          <img 
-            src="src/assets/default_user.png" 
-            alt="User Profile Picture"
-            width={35} height={35}
-          />
+    <CameraProvider>
+      <main className='dashboard-container'>
+        <section className='nav-drawer'>
           <div>
-            <h3>Juan Dela Cruz</h3>
-            <p>XXXX-XXXX</p>
+            <header>
+              <Icons.AppLogo className="app-logo" />
+              <h1>Trixie</h1>
+            </header>
+
+            <section className='search-box-container'>
+              <Icons.Search className='search-icon' />
+              <input type="text" placeholder='Search' />
+            </section>
+
+            <NavDrawerMenu
+              items={[
+                { icon: Icons.Dashboard, title: 'Dashboard', element: DashboardTab },
+                { icon: Icons.Controller, title: 'Controller', element: Controller },
+                { icon: Icons.Activities, title: 'Activities', element: Activities },
+                { icon: Icons.CameraOutline, title: 'Vision', element: Vision },
+                { icon: Icons.Settings, title: 'Settings', element: Settings }
+              ]}
+              onClick={selectedElement => setActiveTab(selectedElement)}
+            />
           </div>
-          <div className='user-more-container'>
-            <Icons.TripleDot className='user-more' onClick={() => setLogOut({button: true})} />
-            <button 
-              className={clsx('log-out-button', !logOut.showLogOutButton && 'hide')} 
-              onClick={() => setLogOut({button: false, prompt: true})} 
-              ref={logOutButtonRef}
-            >
-              <Icons.LogOut className='log-out-button-icon' /> Log Out
-            </button>
-            {logOut.showLogOutPrompt && <section className='log-out-prompt-bg'>
-              <div className='log-out-prompt-container'>
-                <h2>Log Out</h2>
-                <p>Are you sure you want to leave?</p>
-                <div>
-                  <button className='yes-button' onClick={authContext.logOut}>Yes</button>
-                  <button className='no-button' onClick={() => setLogOut({prompt: false})}>No</button>
-                </div>
-              </div>
-            </section>}
-          </div>
+
+          <section className='user-info-container'>
+            <img
+              src="src/assets/default_user.png"
+              alt="User Profile Picture"
+              width={35}
+              height={35}
+            />
+
+            <div>
+              <h3>Juan Dela Cruz</h3>
+              <p>XXXX-XXXX</p>
+            </div>
+
+            <div className='user-more-container'>
+              <Icons.TripleDot
+                className='user-more'
+                onClick={() => setLogOut({button: true})}
+              />
+
+              <button
+                className={clsx('log-out-button', !logOut.showLogOutButton && 'hide')}
+                onClick={() => setLogOut({button: false, prompt: true})}
+                ref={logOutButtonRef}
+              >
+                <Icons.LogOut className='log-out-button-icon' /> Log Out
+              </button>
+
+              {logOut.showLogOutPrompt && (
+                <section className='log-out-prompt-bg'>
+                  <div className='log-out-prompt-container'>
+                    <h2>Log Out</h2>
+                    <p>Are you sure you want to leave?</p>
+                    <div>
+                      <button className='yes-button' onClick={authContext.logOut}>
+                        Yes
+                      </button>
+                      <button className='no-button' onClick={() => setLogOut({prompt: false})}>
+                        No
+                      </button>
+                    </div>
+                  </div>
+                </section>
+              )}
+            </div>
+          </section>
         </section>
-      </section>
-      <section className='content-window'>
-        {activeTab}
-      </section>
-    </main>
-  )
+
+        <section className='content-window'>
+          {activeTab}
+        </section>
+      </main>
+    </CameraProvider>
+  );
 }
 
 export default Dashboard
